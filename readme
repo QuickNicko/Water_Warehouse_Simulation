@@ -1,1 +1,13 @@
-test
+### Overview
+This tool simulatates a water utility warehouse and gives solutions on how to optimize the reorder point.
+
+### Prerequisite
+This works on ARENA 2022. it may work on other verions.
+
+### Installation & Setup
+download the arena 490_project-update-new.doe file, open, and run
+
+### How to Use
+this section gives an overview on how to use the model
+# Day creation
+This arena model runs every day to check if the season has changed. This is seen at the top, with the create module named "Create day". Seasons are split by 0-89 early winter, 90-284 summer, and 285-365 late winter. and can be adjuted using the decision "Which Season".
