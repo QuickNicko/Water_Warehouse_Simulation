@@ -11,3 +11,23 @@ download the arena 490_project-update-new.doe file, open, and run
 this section gives an overview on how to use the model
 # Day creation
 This arena model runs every day to check if the season has changed. This is seen at the top, with the create module named "Create day". Seasons are split by 0-89 early winter, 90-284 summer, and 285-365 late winter. and can be adjuted using the decision "Which Season".
+Addtionally, demand, or number of days between emergency breaks are set here by season. This can be changed with the assignment module. Finally, there is a converge desccion node here, which adjusts the "little s" very bascially and can be changed.
+
+# Reorder system
+This section also runs every day and checks if the current inventory level is below "little s". Addtionally, there is a descion node "waiting for supplies", which prevents supplies from begined ordered, while supplies is already on route for delivery
+This also split into 2 sections with a descision node: no converge just checks if below little s, with converge checks the MAX of little s, AND y. where y can be littls s for expected winter, lead_time for lead time, or 7_day_average for the ~7 day average.
+if inventory level is below that limit, the task moves right and is delayed using "Delay until supplies recieved", which is a NORM(lead_time5, 3). after the delay, parts arrive, and inventory level increases. 
+
+# job creation
+be below and left of the reorder system there are 2 create notes:
+Create planned task is an EXPO(planned_freq). this passes a descision node that contained planned_01, where if 0, planned jobs are not created, if 1, they are. Then it passes a assign node to assign the demand, which in this case is: TRIA(15, 30, 72) Then is split between reorder calucation (below) and demand (right).
+for demand, it then passes through a fragementation split. where frag=(0,1,2) where = no communication between teams, broken communication, perfect communication, which the better the communication, the higher the chance the parts are ordered to arrive on time
+This section has reminaed on 0 frag for most the project.
+Emergency jobs follow a similar route, they are created with EXPO(Season*emergency_freq), where season was set in the first, day creation section. then pass a assign module for TRIA(2, 8, 15)
+
+Both planned and emergency then go to the bottom section, the descision node "prevent negative inventory" This checks if the current demand is above the inventory level. if so, the job cannot be complated, a stockout is counted, and the job is again attempted to be complated in UNIF(7,14) days.
+
+# lead time calculations.
+for planned and emergecy jobs there is a seperate node. this is how the running average is calculated. inside "Assign 46" calulcation are done, in which the total number of parts is calculated, then the item gets delayed 20 days and the total number of parts is decreated.
+NOTE: the 7_day_total should really be called the 20 day total, and the 7_day_average be called the 12 day average.
+
