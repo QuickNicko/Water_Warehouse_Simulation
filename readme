@@ -34,6 +34,11 @@ NOTE: the 7_day_total should really be called the 20 day total, and the 7_day_av
 ### Python
 
 now that arena was run, python will be used to clean the data.
-Run 
+Run new_data_fixer.py which will turn the file into a combined file that can then be used for analysis.
+
+
+###Arena Final Notes
+Sometimes it does not run. end it, then rerun and it usually works.
+MUST RUN IN BATCH MODE ELSE IT DOES NOT WORK
 
 
