@@ -31,6 +31,14 @@ Both planned and emergency then go to the bottom section, the descision node "pr
 for planned and emergecy jobs there is a seperate node. this is how the running average is calculated. inside "Assign 46" calulcation are done, in which the total number of parts is calculated, then the item gets delayed 20 days and the total number of parts is decreated.
 NOTE: the 7_day_total should really be called the 20 day total, and the 7_day_average be called the 12 day average.
 
+## Running the arena model
+
+#Variables that can be changed:
+planned_01: set this to 0 for planned tasks to no longer exist, 1 for planned tasks to work
+emergency01: set this to 0 for emergency tasks to no longer exist, 1 for emergency tasks to work
+emergency_freq: this is times by "Season" to get how often emegency tasks happen. for example: 1 -> 1*Season 2 -> 2*Season
+planned_freq
+
 ### Python
 
 now that arena was run, python will be used to clean the data.
