@@ -37,7 +37,7 @@ NOTE: the 7_day_total should really be called the 20 day total, and the 7_day_av
 planned_01: set this to 0 for planned tasks to no longer exist, 1 for planned tasks to work
 emergency01: set this to 0 for emergency tasks to no longer exist, 1 for emergency tasks to work
 emergency_freq: this is times by "Season" to get how often emegency tasks happen. for example: 1 -> 1*Season 2 -> 2*Season
-planned_freq
+planned_freq:
 
 ### Python
 
